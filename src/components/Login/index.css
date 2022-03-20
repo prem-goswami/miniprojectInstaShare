@@ -1,0 +1,59 @@
+.bgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.loginContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 60%;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+  min-height: 50vh;
+  justify-content: center;
+  align-items: center;
+  background: #fefeff;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+  border-radius: 8px;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+.labelText {
+  font-family: 'roboto';
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.inputBar {
+  margin-bottom: 10px;
+  background: #eeeeee;
+  border-radius: 2px;
+  min-width: 300px;
+  min-height: 30px;
+}
+.loginButton {
+  background: #4094ef;
+  border-radius: 8px;
+  border-style: solid;
+  border-radius: 5px;
+  color: white;
+  border-width: 0px;
+  height: 30px;
+  font-family: roboto;
+  cursor: pointer;
+}
+@media screen and (max-width: 991px) {
+  .imgContainer {
+    display: none;
+  }
+}
+.error-message {
+  color: red;
+  font-family: roboto;
+}

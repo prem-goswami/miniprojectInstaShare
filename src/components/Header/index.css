@@ -1,0 +1,58 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0px 2px 2px 0px;
+  max-height: 80px;
+}
+.headContainer {
+  display: flex;
+  align-items: center;
+  min-width: 80%;
+  justify-content: space-between;
+}
+.searchContainer {
+  display: flex;
+}
+.container2 {
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  cursor: pointer;
+}
+.websiteLogo {
+  width: 100px;
+  height: 40px;
+}
+.websiteLogoContainer {
+  display: flex;
+  align-items: center;
+}
+.logoHeading {
+  font-size: 25px;
+  margin-left: 10px;
+}
+.butt1 {
+  background-color: transparent;
+  border-width: 0px;
+  font-family: roboto;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 10px;
+  color: black;
+  font-weight: bold;
+}
+.logoutButton {
+  background-color: #4094ef;
+  color: white;
+  border-width: 0px;
+  height: 25px;
+  width: 80px;
+  font-family: roboto;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}

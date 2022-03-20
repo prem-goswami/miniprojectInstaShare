@@ -1,0 +1,46 @@
+.myProfileContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 80%;
+  margin-top: 10px;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  min-width: 80%;
+}
+.myProfilePic {
+  min-height: 120px;
+  min-width: 120px;
+}
+.userNameProfile {
+  font-family: roboto;
+  font-size: 20px;
+  font-weight: normal;
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.followersContainer {
+  display: flex;
+}
+.userId {
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.storiesContainer {
+  display: flex;
+  min-width: 80%;
+}

@@ -1,0 +1,10 @@
+.listItem {
+  list-style: none;
+  display: flex;
+}
+.storyImage {
+  height: 50px;
+  width: 50px;
+  margin-right: 25px;
+  margin-top: 20px;
+}

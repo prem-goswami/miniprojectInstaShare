@@ -1,0 +1,17 @@
+.storyImage {
+  width: 50px;
+  height: 50px;
+}
+.slider {
+  max-width: 20%;
+}
+
+.slick-container {
+  width: 80%;
+  max-width: 1100px;
+  margin-top: 10px;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
