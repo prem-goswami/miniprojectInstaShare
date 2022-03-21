@@ -5,7 +5,7 @@ const RenderProfileStories = props => {
   const {image} = storiesDetails
   return (
     <li className="listItem">
-      <img src={image} alt="story" className="storyImage" />
+      <img src={image} alt="my story" className="storyImage" />
     </li>
   )
 }

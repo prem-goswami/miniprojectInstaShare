@@ -19,23 +19,30 @@ const Header = props => {
   }
 
   return (
-    <div className="navContainer">
+    <li className="navContainer">
       <div className="headContainer">
         <div className="websiteLogoContainer">
-          <img
-            src="https://res.cloudinary.com/dyyexkznb/image/upload/v1647488445/instaShareLogo_wfbdew.png"
-            alt="websiteLogo"
-            className="websiteLogo"
-          />
+          <Link to="/" className="linkElement">
+            <img
+              src="https://res.cloudinary.com/dyyexkznb/image/upload/v1647488445/instaShareLogo_wfbdew.png"
+              alt="website logo"
+              className="websiteLogo"
+            />
+          </Link>
           <h1 className="logoHeading">Insta Share</h1>
         </div>
         <div className="container2">
           <div className="searchContainer">
-            <input type="search" onChange={onChangeSearch} />
+            <input
+              type="search"
+              onChange={onChangeSearch}
+              placeholder="Search Caption"
+            />
             <button
               type="button"
               className="searchIcon"
               onClick={onClickSearch}
+              testid="searchIcon"
             >
               <FaSearch />
             </button>
@@ -55,7 +62,7 @@ const Header = props => {
           </button>
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 

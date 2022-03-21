@@ -115,7 +115,13 @@ class Home extends Component {
     )
   }
 
-  renderLoadingView = () => (
+  renderStoriesLoadingView = () => (
+    <div className="loader-container" testid="loader">
+      <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
+    </div>
+  )
+
+  renderPostsLoadingView = () => (
     <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
@@ -140,13 +146,31 @@ class Home extends Component {
     </div>
   )
 
-  renderSuccessView = () => this.renderPosts()
+  renderNoPostsView = () => (
+    <div className="noPostsContainer">
+      <img
+        src="https://res.cloudinary.com/dyyexkznb/image/upload/v1647830283/Group_olqwb0.jpg"
+        alt="no result"
+        className="noSearchResultImage"
+      />
+      <p>Search Not Found</p>
+      <p>Try different keyword or search again </p>
+    </div>
+  )
+
+  renderSuccessView = () => {
+    const {PostsList} = this.state
+    if (PostsList.length === 0) {
+      return this.renderNoPostsView()
+    }
+    return this.renderPosts()
+  }
 
   renderFinalView = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case 'INPROGRESS':
-        return this.renderLoadingView()
+        return this.renderPostsLoadingView()
       case 'SUCCESS':
         return this.renderSuccessView()
       case 'FAILURE':
@@ -158,11 +182,13 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        <Header getSearchResults={this.getSearchResults} />
+      <div>
+        <ul>
+          <Header getSearchResults={this.getSearchResults} />
+        </ul>
         <div className="userStoriesContainer">{this.renderUserStories()}</div>
         <div className="userContainer1">{this.renderFinalView()}</div>
-      </>
+      </div>
     )
   }
 }

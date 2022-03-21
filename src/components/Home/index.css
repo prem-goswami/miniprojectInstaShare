@@ -1,11 +1,9 @@
 .userStoriesContainer {
-  width: 90%;
-}
-.userStoriesContainer {
   margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80%;
 }
 .userContainer1 {
   display: flex;
@@ -28,4 +26,14 @@
   color: white;
   border-radius: 10px;
   border-width: 0px;
+}
+.noPostsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.noSearchResultImage {
+  width: 70%;
 }

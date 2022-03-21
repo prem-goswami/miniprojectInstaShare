@@ -9,7 +9,7 @@ import Header from '../Header'
 import RenderProfileStories from '../RenderProfileStories'
 import RenderProfilePosts from '../RenderProfilePosts'
 
-class ProfilePage extends Component {
+class SpecificUserPage extends Component {
   state = {
     apiStatus: '',
     DataList: [],
@@ -18,17 +18,20 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    this.fetchProfileData()
+    this.fetchUserData()
   }
 
-  onClickTryAgain = () => this.fetchProfileData()
+  onClickTryAgain = () => this.fetchUserData()
 
-  fetchProfileData = async () => {
+  fetchUserData = async () => {
     this.setState({
       apiStatus: 'INPROGRESS',
     })
     const jwtToken = Cookie.get('jwt_token')
-    const profileUrl = 'https://apis.ccbp.in/insta-share/my-profile'
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+    const profileUrl = `https://apis.ccbp.in/insta-share/users/${id}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -37,25 +40,26 @@ class ProfilePage extends Component {
     }
     const response = await fetch(profileUrl, options)
     const data = await response.json()
+    console.log(data)
     if (response.ok === true) {
       this.setState({apiStatus: 'SUCCESS'})
-      const postData = data.profile.posts.map(eachItem => ({
+      const postData = data.user_details.posts.map(eachItem => ({
         postId: eachItem.id,
         postImage: eachItem.image,
       }))
-      const storiesData = data.profile.stories.map(eachItem => ({
+      const storiesData = data.user_details.stories.map(eachItem => ({
         id: eachItem.id,
         image: eachItem.image,
       }))
       const fetchedData = {
-        followerCount: data.profile.followers_count,
-        followingCount: data.profile.following_count,
-        id: data.profile.id,
-        postsCount: data.profile.posts_count,
-        profilePic: data.profile.profile_pic,
-        userBio: data.profile.user_bio,
-        userId: data.profile.user_id,
-        userName: data.profile.user_name,
+        followerCount: data.user_details.followers_count,
+        followingCount: data.user_details.following_count,
+        id: data.user_details.id,
+        postsCount: data.user_details.posts_count,
+        profilePic: data.user_details.profile_pic,
+        userBio: data.user_details.user_bio,
+        userId: data.user_details.user_id,
+        userName: data.user_details.user_name,
       }
       this.setState({
         DataList: fetchedData,
@@ -198,4 +202,4 @@ class ProfilePage extends Component {
   }
 }
 
-export default ProfilePage
+export default SpecificUserPage

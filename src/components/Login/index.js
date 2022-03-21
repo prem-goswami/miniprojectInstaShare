@@ -70,13 +70,13 @@ class Login extends Component {
           <div className="imgContainer">
             <img
               src="https://res.cloudinary.com/dyyexkznb/image/upload/v1647488432/homeScreenLogo_tg0cp3.png"
-              alt="loginImage"
+              alt="website login"
             />
           </div>
           <div className="inputContainer">
             <img
               src="https://res.cloudinary.com/dyyexkznb/image/upload/v1647488445/instaShareLogo_wfbdew.png"
-              alt="websiteLogo"
+              alt="website logo"
             />
             <h1>Insta Share</h1>
             <form className="formContainer" onSubmit={this.loginClicked}>

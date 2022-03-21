@@ -12,9 +12,14 @@
 }
 
 .infoContainer {
+  margin-top: 30px;
   display: flex;
   align-items: center;
   min-width: 80%;
+}
+.infoText {
+  font-family: roboto;
+  font-size: 15px;
 }
 .myProfilePic {
   min-height: 120px;
@@ -43,4 +48,28 @@
 .storiesContainer {
   display: flex;
   min-width: 80%;
+}
+.headLogo {
+  display: flex;
+  align-items: center;
+}
+.myProfilePostsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 80%;
+}
+.postsText {
+  font-family: roboto;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.myPosts {
+  display: flex;
+  flex-wrap: wrap;
+}
+p {
+  font-family: roboto;
 }

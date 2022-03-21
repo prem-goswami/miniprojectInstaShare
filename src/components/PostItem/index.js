@@ -21,14 +21,18 @@ const PostItem = props => {
   return (
     <li className="postItem">
       <div className="profileContainer">
-        <img src={profilePic} alt="profile pic" className="profilePic" />
+        <img
+          src={profilePic}
+          alt="post author profile"
+          className="profilePic"
+        />
         <Link to={`/users/${userId}`} className="userName">
           {userName}
         </Link>
       </div>
-      <img src={imageUrl} alt="postimage" className="postImage" />
+      <img src={imageUrl} alt="post" className="postImage" />
       <div className="buttonContainer">
-        <button type="button" testid="BsHeart" className="button">
+        <button type="button" className="button" testid="likeIcon">
           <BsHeart className="icon" />
         </button>
         <button type="button" testid="FaRegComment" className="button">
