@@ -75,7 +75,7 @@ class ProfilePage extends Component {
       <div className="infoContainer">
         <img
           src={DataList.profilePic}
-          alt="profilePic"
+          alt="my profile"
           className="myProfilePic"
         />
         <div className="textContainer">
@@ -94,12 +94,14 @@ class ProfilePage extends Component {
 
   renderStoriesContainer = () => {
     const {storiesList} = this.state
+    const storiesAlt = 'my story'
     return (
       <ul className="storiesContainer">
         {storiesList.map(eachitem => (
           <RenderProfileStories
             storiesDetails={eachitem}
             key={eachitem.image}
+            storiesAltText={storiesAlt}
           />
         ))}
       </ul>
@@ -108,6 +110,7 @@ class ProfilePage extends Component {
 
   renderPostContainer = () => {
     const {postList} = this.state
+    const postsAlt = 'my post'
     return (
       <div className="myProfilePostsContainer">
         <div className="headLogo">
@@ -119,6 +122,7 @@ class ProfilePage extends Component {
             <RenderProfilePosts
               profilePostData={eachItem}
               key={eachItem.postId}
+              profileAltText={postsAlt}
             />
           ))}
         </ul>

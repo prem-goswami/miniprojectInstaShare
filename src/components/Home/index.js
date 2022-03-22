@@ -13,6 +13,8 @@ class Home extends Component {
     storiesList: [],
     PostsList: [],
     searchInput: '',
+    searchedPosts: [],
+    searchButtonClicked: false,
   }
 
   componentDidMount() {
@@ -51,9 +53,58 @@ class Home extends Component {
     }
   }
 
-  getSearchResults = searchvalue => {
-    this.setState({searchInput: searchvalue})
+  searchClicked = searchvalue => {
+    this.setState({searchInput: searchvalue, searchButtonClicked: true})
+    this.getSearchResults()
+  }
+
+  getSearchResults = () => {
+    const {searchInput} = this.state
+    if (searchInput !== '') {
+      this.fetchSearchedPosts()
+    }
     this.fetchPosts()
+  }
+
+  fetchSearchedPosts = async () => {
+    const {searchInput} = this.state
+    this.setState({
+      apiStatus: 'INPROGRESS',
+    })
+    const jwtToken = Cookies.get('jwt_token')
+    console.log(searchInput)
+
+    const postsUrl = `https://apis.ccbp.in/insta-share/posts?search=${searchInput}`
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(postsUrl, options)
+    const data = await response.json()
+    if (response.ok === true) {
+      this.setState({apiStatus: 'SUCCESS'})
+
+      const postData = data.posts.map(eachItem => ({
+        imageUrl: eachItem.post_details.image_url,
+        caption: eachItem.post_details.caption,
+        postId: eachItem.post_id,
+        profilePic: eachItem.profile_pic,
+        userId: eachItem.user_id,
+        userName: eachItem.user_name,
+        createdAt: eachItem.created_at,
+        likesCount: eachItem.likes_count,
+      }))
+
+      this.setState({
+        searchedPosts: postData,
+      })
+    } else {
+      this.setState({
+        apiStatus: 'FAILURE',
+      })
+    }
   }
 
   fetchPosts = async () => {
@@ -64,7 +115,7 @@ class Home extends Component {
     const jwtToken = Cookies.get('jwt_token')
     console.log(searchInput)
 
-    const postsUrl = `https://apis.ccbp.in/insta-share/posts?search=${searchInput}`
+    const postsUrl = 'https://apis.ccbp.in/insta-share/posts'
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -158,16 +209,42 @@ class Home extends Component {
     </div>
   )
 
-  renderSuccessView = () => {
-    const {PostsList} = this.state
-    if (PostsList.length === 0) {
-      return this.renderNoPostsView()
+  renderSearchedPosts = () => {
+    const {searchedPosts} = this.state
+    if (searchedPosts.length !== 0) {
+      return (
+        <div>
+          <h1>Search Result</h1>
+          <ul className="postsContainer">
+            {searchedPosts.map(eachitem => (
+              <PostItem postDetails={eachitem} key={eachitem.postId} />
+            ))}
+          </ul>
+        </div>
+      )
     }
-    return this.renderPosts()
+    return this.renderNoPostsView()
   }
 
-  renderFinalView = () => {
+  renderFinalSearchView = () => {
     const {apiStatus} = this.state
+    switch (apiStatus) {
+      case 'INPROGRESS':
+        return this.renderPostsLoadingView()
+      case 'SUCCESS':
+        return this.renderSearchedPosts()
+      default:
+        return null
+    }
+  }
+
+  renderSuccessView = () => this.renderPosts()
+
+  renderFinalView = () => {
+    const {apiStatus, searchButtonClicked} = this.state
+    if (searchButtonClicked === true) {
+      return this.renderSearchedPosts()
+    }
     switch (apiStatus) {
       case 'INPROGRESS':
         return this.renderPostsLoadingView()
@@ -184,7 +261,7 @@ class Home extends Component {
     return (
       <div>
         <ul>
-          <Header getSearchResults={this.getSearchResults} />
+          <Header searchClicked={this.searchClicked} />
         </ul>
         <div className="userStoriesContainer">{this.renderUserStories()}</div>
         <div className="userContainer1">{this.renderFinalView()}</div>

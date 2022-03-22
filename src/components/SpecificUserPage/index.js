@@ -79,7 +79,7 @@ class SpecificUserPage extends Component {
       <div className="infoContainer">
         <img
           src={DataList.profilePic}
-          alt="profilePic"
+          alt="user profile"
           className="myProfilePic"
         />
         <div className="textContainer">
@@ -98,12 +98,15 @@ class SpecificUserPage extends Component {
 
   renderStoriesContainer = () => {
     const {storiesList} = this.state
+    const storyAlt = 'user story'
+
     return (
       <ul className="storiesContainer">
         {storiesList.map(eachitem => (
           <RenderProfileStories
             storiesDetails={eachitem}
             key={eachitem.image}
+            storiesAltText={storyAlt}
           />
         ))}
       </ul>
@@ -112,6 +115,7 @@ class SpecificUserPage extends Component {
 
   renderPostContainer = () => {
     const {postList} = this.state
+    const postAlt = 'user post'
     return (
       <div className="myProfilePostsContainer">
         <div className="headLogo">
@@ -123,6 +127,7 @@ class SpecificUserPage extends Component {
             <RenderProfilePosts
               profilePostData={eachItem}
               key={eachItem.postId}
+              profileAltText={postAlt}
             />
           ))}
         </ul>

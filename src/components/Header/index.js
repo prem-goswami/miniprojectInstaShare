@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 import './index.css'
 
 const Header = props => {
-  const {getSearchResults} = props
+  const {searchClicked} = props
   const onClickLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
@@ -15,7 +15,7 @@ const Header = props => {
   const [searchInput, setSearchInput] = useState('')
   const onChangeSearch = event => setSearchInput(event.target.value)
   const onClickSearch = () => {
-    getSearchResults(searchInput)
+    searchClicked(searchInput)
   }
 
   return (
